@@ -35,36 +35,46 @@ export default function ScreenContainer(props) {
         setFile(e.target.files[0]);
     }
 
+    function resetScreenState() {
+        setOperation('');
+        setFormat('');
+        setMapping('');
+        setSequence('');
+        setFile(null);
+        setCurrentScreen(1);
+    }
+
     return (
         <>
             <ActionType 
-                onActionChange = {handleOperationChange}
-                screenIndex = '1'
+                onActionChange     = {handleOperationChange}
+                screenIndex        = '1'
                 currentScreenIndex = {currentScreen}
             />
 
             <FormatSelect 
-                onFormatChange = {handleOutputFormatChange}
-                screenIndex = '2'
+                onFormatChange     = {handleOutputFormatChange}
+                screenIndex        = '2'
                 currentScreenIndex = {currentScreen}
             />
 
             <MappingFields
-                onMappingChange = {handleMappingChange}
-                onSequenceChange = {handleSequenceChange}
-                onFileChange = {handleFileChange}
-                screenIndex = '3'
+                onMappingChange    = {handleMappingChange}
+                onSequenceChange   = {handleSequenceChange}
+                onFileChange       = {handleFileChange}
+                screenIndex        = '3'
                 currentScreenIndex = {currentScreen}
             />
             
             <PreviewOperation 
-                operation = {operation}
-                outputformat = {outputformat}
-                mapping = {mapping}
-                sequence = {sequence}
-                file  = {file}
-                screenIndex = '4'
+                operation          = {operation}
+                outputformat       = {outputformat}
+                mapping            = {mapping}
+                sequence           = {sequence}
+                file               = {file}
+                screenIndex        = '4'
                 currentScreenIndex = {currentScreen}
+                triggerScreenReset = {resetScreenState}
             />
 
             <div className='ui-screen-navigation'>

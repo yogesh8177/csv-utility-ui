@@ -19,7 +19,7 @@ export default function MappingFields(props) {
         reader.onload = (e) => {
             console.log('file onload: ', e.target.result.split(/\r?\n/)[0]);
             let csvHeaders = e.target.result.split(/\r?\n/)[0];
-            console.log({csvHeaders});
+            console.log({csvHeadersLength: csvHeaders.length});
             setHeaders(csvHeaders.split(','));
             setReferenceHeaders(csvHeaders.split(','));
             setOutputHeaders(csvHeaders.split(','));

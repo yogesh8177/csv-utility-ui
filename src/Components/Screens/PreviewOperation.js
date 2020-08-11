@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function MappingFields(props) {
-    const {operation, outputformat, mapping, sequence, file, currentScreenIndex, screenIndex} = props;
+    const {operation, outputformat, mapping, sequence, file, currentScreenIndex, screenIndex, triggerScreenReset} = props;
 
     if (parseInt(screenIndex) !== parseInt(currentScreenIndex)) {
         return null;
@@ -39,8 +39,28 @@ export default function MappingFields(props) {
         }
     } 
 
+    function validateOperation() {
+        if (
+            (operation && operation !== '') &&
+            (mapping && mapping !== '') &&
+            (sequence && sequence !== '') &&
+            (outputformat && outputformat !== '') &&
+            file
+        ) 
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     async function handleUpload(e) {
         try {
+            if (!validateOperation()) {
+                alert('Please fill all fields');
+                return;
+            }
             let signedUrl = await fetchSignedUrl();
             const formData = new FormData();
             Object.keys(signedUrl.fields).forEach(key => {
@@ -53,14 +73,12 @@ export default function MappingFields(props) {
                 "https://s3.amazonaws.com/csv-uploads-storage",
                 {
                     method: 'POST',
-                    // headers: {
-                    //     'Content-Type': 'multipart/form-data'
-                    // },
                     body: formData
                 }
             );
             console.log({uploadResponse: response});
             alert('File uploaded');
+            triggerScreenReset();
         }
         catch(error) {
             console.error({
