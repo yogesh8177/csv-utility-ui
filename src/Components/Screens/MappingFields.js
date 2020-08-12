@@ -95,13 +95,13 @@ export default function MappingFields(props) {
 
     function Headers(props) {
         const {referenceHeaders} = props;
-        let spans = referenceHeaders.map((header, index) => <span key={header}>{header} <button onClick={(e) => addHeaderToMappings({headers, outputHeaders, header, index})}>Add</button> </span>);
+        let spans = referenceHeaders.map((header, index) => <li className='reference-headers' key={header}><span>{header} <button onClick={(e) => addHeaderToMappings({headers, outputHeaders, header, index})}>Add</button> </span></li>);
         return spans;
     }
 
     function Mappings(props) {
         const {mappingHeaders, originalHeaders} = props;
-        let list = mappingHeaders.map((header, index) => <li key={originalHeaders[index]}>{originalHeaders[index]} <input type='text' name={originalHeaders[index]} defaultValue={header} id={header} /> <button onClick={(e) => removeUnwantedHeader({ mappingHeaders, originalHeaders, header, index})}>Remove</button></li>);
+        let list = mappingHeaders.map((header, index) => <li key={originalHeaders[index]}>{originalHeaders[index]} <input type='text' name={originalHeaders[index]} defaultValue={header} id={header} /> <button className='remove-btn' onClick={(e) => removeUnwantedHeader({ mappingHeaders, originalHeaders, header, index})}>Remove</button></li>);
         //let list = mappingHeaders.map((header, index) => <li key={originalHeaders[index]}>{originalHeaders[index]} <input type='text' name={originalHeaders[index]} defaultValue={header} id={header} /></li>);
         return list;
     }
@@ -122,7 +122,7 @@ export default function MappingFields(props) {
                         <Mappings mappingHeaders={outputHeaders} originalHeaders={headers}/>
                     </ul>
                 </li>
-                <li><button onClick={(e) => confirmMapping(outputHeaders, headers)}>Confirm Mapping</button></li>
+                <li><button className='action-btn' onClick={(e) => confirmMapping(outputHeaders, headers)}>Confirm Mapping</button></li>
                 <li><label>Mapping (Header mapping with original vs output headers) </label><br/> <input type='text' onChange={handleMappingChange} name='mapping' id='Mapping' placeholder='mapping' value={mapping} /></li>
                 <li><label>Sequence (Header sequence for final output file) </label><br/> <input type='text' onChange={handleSequenceChange} name='sequence' id='Sequence' placeholder='sequence' value={sequence} /></li>
             </ul>

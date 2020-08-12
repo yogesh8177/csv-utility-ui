@@ -55,11 +55,13 @@
 
 .ui-screen-nav-buttons {
   padding: 5px;
-  width: 5em;
+  width: 7em;
+  height: 50px;
   border-radius: 3px;
   color: azure;
   background-color: cornflowerblue;
   border: none;
+  cursor: pointer;
 }
 
 .ui-nav-next {
@@ -82,3 +84,91 @@
 .show {
   display: block;
 }
+
+.reference-headers span {
+  padding: 5px;
+  border-radius: 20px;
+  background-color: darkcyan;
+  color: aliceblue;
+}
+
+.reference-headers {
+  margin-top: 5px;
+  display: inline-flex;
+}
+
+.reference-headers button {
+  background-color: darkslategrey;
+  color: aliceblue;
+  border: 0px;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.reference-headers button:hover {
+  cursor: pointer;
+}
+
+input {
+  padding: 5px;
+  border-radius: 20px;
+  border: 0px;
+}
+
+#Mapping, #Sequence {
+  padding: 5px;
+  width: 90%;
+  height: 40px;
+}
+
+.remove-btn {
+  border: 0px;
+  border-radius: 10px;
+  color: aliceblue;
+  background-color: darkslateblue;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.action-btn {
+  border: 0px;
+  border-radius: 10px;
+  color: aliceblue;
+  background-color: deeppink;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: firebrick 2px 3px 2px;
+}
+
+.action-btn:hover {
+  background-color: firebrick;
+}
+
+.preview {
+  border: 0px;
+  border-radius: 20px;
+  box-shadow: firebrick 2px 3px 2px;
+  padding: 5px;
+}
+
+.operation {
+  background-color: fuchsia;
+}
+
+.outputformat {
+  background-color: indianred;
+}
+
+.mapping {
+  background-color: indigo;
+  color: aliceblue;
+}
+
+.sequence {
+  background-color: coral;
+}
+
+
+
+

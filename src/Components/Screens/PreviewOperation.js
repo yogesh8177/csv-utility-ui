@@ -66,7 +66,6 @@ export default function MappingFields(props) {
             Object.keys(signedUrl.fields).forEach(key => {
                 formData.append(key, signedUrl.fields[key]);
             });
-            const fileField = document.querySelector('input[type="file"]');
             formData.append('file', file, signedUrl.fields.Key);
 
             let response = await fetch(
@@ -90,12 +89,14 @@ export default function MappingFields(props) {
 
     return (
         <>
+            <h2>Preview your operation</h2>
             <ul className='ui-list'>
-                <li><label>Operation: {operation}</label></li>
-                <li><label>Format: {outputformat}</label></li>
-                <li><label>Mapping: {mapping}</label></li>
-                <li><label>Sequence: {sequence}</label></li>
-                <li><button name='upload' onClick={handleUpload}>Upload</button></li>
+                <li><label>Operation: <span className='preview operation'>{operation}</span></label></li>
+                <li><label>Format: <span className='preview outputformat'>{outputformat}</span></label></li>
+                <li><label>Mapping</label></li>
+                <li><label><span className='preview mapping'>{mapping}</span></label></li>
+                <li><label>Sequence: <span className='preview sequence'>{sequence}</span></label></li>
+                <li><button className='action-btn' name='upload' onClick={handleUpload}>Upload</button></li>
             </ul>
            
         </>
