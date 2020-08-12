@@ -5,6 +5,7 @@ import MappingFields     from './MappingFields';
 import PreviewOperation  from './PreviewOperation';
 
 export default function ScreenContainer(props) {
+    const {userId} = props;
     const [operation, setOperation]  = useState('');
     const [outputformat, setFormat]  = useState('');
     const [mapping, setMapping]      = useState('');
@@ -67,6 +68,7 @@ export default function ScreenContainer(props) {
             />
             
             <PreviewOperation 
+                userId             = {userId}
                 operation          = {operation}
                 outputformat       = {outputformat}
                 mapping            = {mapping}

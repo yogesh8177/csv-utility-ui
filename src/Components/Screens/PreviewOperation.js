@@ -1,7 +1,8 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function MappingFields(props) {
-    const {operation, outputformat, mapping, sequence, file, currentScreenIndex, screenIndex, triggerScreenReset} = props;
+    const {operation, outputformat, mapping, sequence, file, currentScreenIndex, screenIndex, triggerScreenReset, userId} = props;
 
     if (parseInt(screenIndex) !== parseInt(currentScreenIndex)) {
         return null;
@@ -11,10 +12,12 @@ export default function MappingFields(props) {
         try {
             const payload = {
                 metadata: {
-                    "operation": operation,
-                    "mapping": mapping,
-                    "sequence": sequence,
-                    "outputformat": outputformat
+                    operation,
+                    mapping,
+                    sequence,
+                    outputformat,
+                    jobId: uuidv4(),
+                    userId
                 }
             };
             let response = await fetch(
