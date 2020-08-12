@@ -11,8 +11,8 @@ function App() {
   const [connected, setConnected] = useState(true);
 
   useEffect(() => {
-    intitializeUser();
-    initializeWebSocket();
+    let _userId = intitializeUser();
+    initializeWebSocket(_userId);
     return () => {
       setWebSocket(null);
       setConnected(false);
@@ -22,16 +22,17 @@ function App() {
   [connected]);
 
   function intitializeUser() {
-    let userId = localStorage.getItem('userId');
-    if (!userId) {
-      userId = uuidv4();
-      localStorage.setItem('userId', userId);
+    let _userId = localStorage.getItem('userId');
+    if (!_userId) {
+      _userId = uuidv4();
+      localStorage.setItem('userId', _userId);
     }
-    setUserId(userId);
+    setUserId(_userId);
+    return _userId;
   }
   
-  function initializeWebSocket() {
-    const socket = new WebSocket(`wss://ymhc0xvi9h.execute-api.us-east-1.amazonaws.com/test`);
+  function initializeWebSocket(_userId) {
+    const socket = new WebSocket(`wss://ymhc0xvi9h.execute-api.us-east-1.amazonaws.com/test?userId=${_userId}`);
     socket.onopen = event => {
       setWebSocket(socket);
       setConnected(true);
