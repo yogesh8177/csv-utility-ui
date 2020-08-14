@@ -1,21 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ActionType        from './ActionType';
 import FormatSelect      from './FormatSelect';
 import MappingFields     from './MappingFields';
 import PreviewOperation  from './PreviewOperation';
 
 export default function ScreenContainer(props) {
-    const {userId}                          = props;
-    const [operation, setOperation]         = useState('');
-    const [outputformat, setFormat]         = useState('');
-    const [mapping, setMapping]             = useState('');
-    const [sequence, setSequence]           = useState('');
+    const {userId}                                = props;
+    const [operation, setOperation]               = useState('');
+    const [outputformat, setFormat]               = useState('');
+    const [mapping, setMapping]                   = useState('');
+    const [sequence, setSequence]                 = useState('');
     const [headers, setHeaders]                   = useState([]);
     const [outputHeaders, setOutputHeaders]       = useState([]);
     const [referenceHeaders, setReferenceHeaders] = useState([]);
-    const [file, setFile]                   = useState(null);
+    const [file, setFile]                         = useState(null);
+    const [currentScreen, setCurrentScreen]       = useState(1);
 
-    const [currentScreen, setCurrentScreen] = useState(1);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
 
     function handleOperationChange(e) {
         console.log({target: e.target.name, value: e.target.value});
