@@ -23,11 +23,6 @@ function App() {
   , 
   [connected]);
 
-  function displayToast(message, type) {
-    console.log('inside toast trigger function');
-    toast[type](message);
-  }
-
   function intitializeUser() {
     let _userId = localStorage.getItem('userId');
     if (!_userId) {
@@ -62,9 +57,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      <ScreenContainer userId={userId} />
-      <ToastContainer newestOnTop={true} />
+        <h1>Welcome to CSV transformation tool</h1>
+        <p>(Launching as beta)</p>
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <ScreenContainer userId={userId} />
+        <ToastContainer newestOnTop={true} />
       </header>
     </div>
   );
