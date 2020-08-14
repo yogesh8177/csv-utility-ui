@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 
 export default function ActionType(props) {
-    const [action, setAction] = useState('');
 
-    const {onActionChange, currentScreenIndex, screenIndex} = props;
+    const {onActionChange, currentScreenIndex, screenIndex, operation} = props;
     
     if (parseInt(screenIndex) !== parseInt(currentScreenIndex)) {
         return null;
@@ -11,7 +10,6 @@ export default function ActionType(props) {
 
     function handleActionChange(e) {
         console.log('setting operation', e.target.value);
-        setAction(e.target.value);
         onActionChange(e);
     }
 
@@ -19,7 +17,7 @@ export default function ActionType(props) {
         <>
             <div>
                 <label>Action</label><br/>
-                <select defaultValue={action} onChange={handleActionChange} name='Operation' className='ui-select'>
+                <select defaultValue={operation} onChange={handleActionChange} name='Operation' className='ui-select'>
                     <option value=''>Select</option>
                     <option value='transform'>Transform</option>
                 </select>

@@ -1,13 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 export default function MappingFields(props) {
-    const [mapping, setMapping]                   = useState('');
-    const [sequence, setSequence]                 = useState('');
-    const [headers, setHeaders]                   = useState([]);
-    const [outputHeaders, setOutputHeaders]       = useState([]);
-    const [referenceHeaders, setReferenceHeaders] = useState([]);
 
-    const {onMappingChange, onSequenceChange, onFileChange, currentScreenIndex, screenIndex} = props;
+    const {
+        onMappingChange,
+        onSequenceChange, 
+        onFileChange, 
+        currentScreenIndex, 
+        screenIndex, 
+        mapping, 
+        sequence,
+        headers,
+        setHeaders,
+        outputHeaders,
+        setOutputHeaders,
+        referenceHeaders,
+        setReferenceHeaders
+    } = props;
 
     if (parseInt(screenIndex) !== parseInt(currentScreenIndex)) {
         return null;
@@ -23,7 +32,6 @@ export default function MappingFields(props) {
             setHeaders(csvHeaders.split(','));
             setReferenceHeaders(csvHeaders.split(','));
             setOutputHeaders(csvHeaders.split(','));
-            setSequence(csvHeaders);
             onSequenceChange({target: {value: csvHeaders}});
         };
         reader.readAsText(files[0]);
@@ -31,12 +39,10 @@ export default function MappingFields(props) {
     }
 
     function handleMappingChange(e) {
-        setMapping(e.target.value);
         onMappingChange(e);
     }
 
     function handleSequenceChange(e) {
-        setSequence(e.target.value);
         onSequenceChange(e);
     }
 
@@ -57,11 +63,9 @@ export default function MappingFields(props) {
             _outputHeaders.push(headerMapping);
         });
         // set header mappings
-        setMapping(_mappings);
         onMappingChange({target: {value: _mappings}});
         console.log({_sequence});
         // set header sequence
-        setSequence(_sequence);
         onSequenceChange({target: {value: _sequence}});
         //set output headers
         setOutputHeaders(_outputHeaders);
@@ -76,7 +80,6 @@ export default function MappingFields(props) {
         setOutputHeaders(modifiedOutputHeaders);
         setHeaders(modifiedOriginalHeaders);
         
-        setSequence(modifiedOutputHeaders);
         onSequenceChange({target: {value: modifiedOutputHeaders}});
     }
 

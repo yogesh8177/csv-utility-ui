@@ -5,12 +5,15 @@ import MappingFields     from './MappingFields';
 import PreviewOperation  from './PreviewOperation';
 
 export default function ScreenContainer(props) {
-    const {userId} = props;
-    const [operation, setOperation]  = useState('');
-    const [outputformat, setFormat]  = useState('');
-    const [mapping, setMapping]      = useState('');
-    const [sequence, setSequence]    = useState('');
-    const [file, setFile]            = useState(null);
+    const {userId}                          = props;
+    const [operation, setOperation]         = useState('');
+    const [outputformat, setFormat]         = useState('');
+    const [mapping, setMapping]             = useState('');
+    const [sequence, setSequence]           = useState('');
+    const [headers, setHeaders]                   = useState([]);
+    const [outputHeaders, setOutputHeaders]       = useState([]);
+    const [referenceHeaders, setReferenceHeaders] = useState([]);
+    const [file, setFile]                   = useState(null);
 
     const [currentScreen, setCurrentScreen] = useState(1);
 
@@ -42,6 +45,9 @@ export default function ScreenContainer(props) {
         setMapping('');
         setSequence('');
         setFile(null);
+        setHeaders([]);
+        setOutputHeaders([]);
+        setReferenceHeaders([]);
         setCurrentScreen(1);
     }
 
@@ -51,20 +57,31 @@ export default function ScreenContainer(props) {
                 onActionChange     = {handleOperationChange}
                 screenIndex        = '1'
                 currentScreenIndex = {currentScreen}
+                operation          = {operation}
             />
 
             <FormatSelect 
                 onFormatChange     = {handleOutputFormatChange}
                 screenIndex        = '2'
                 currentScreenIndex = {currentScreen}
+                outputformat       = {outputformat}
             />
 
             <MappingFields
-                onMappingChange    = {handleMappingChange}
-                onSequenceChange   = {handleSequenceChange}
-                onFileChange       = {handleFileChange}
-                screenIndex        = '3'
-                currentScreenIndex = {currentScreen}
+                onMappingChange     = {handleMappingChange}
+                onSequenceChange    = {handleSequenceChange}
+                onFileChange        = {handleFileChange}
+                screenIndex         = '3'
+                currentScreenIndex  = {currentScreen}
+                mapping             = {mapping}
+                sequence            = {sequence}
+                headers             = {headers}
+                setHeaders          = {setHeaders}
+                outputHeaders       = {outputHeaders}
+                setOutputHeaders    = {setOutputHeaders}
+                referenceHeaders    = {referenceHeaders}
+                setReferenceHeaders = {setReferenceHeaders}
+
             />
             
             <PreviewOperation 

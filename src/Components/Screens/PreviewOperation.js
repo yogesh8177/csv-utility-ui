@@ -1,11 +1,16 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { toast } from 'react-toastify';
 
-export default function MappingFields(props) {
+export default function PreviewOperation(props) {
     const {operation, outputformat, mapping, sequence, file, currentScreenIndex, screenIndex, triggerScreenReset, userId} = props;
 
     if (parseInt(screenIndex) !== parseInt(currentScreenIndex)) {
         return null;
+    }
+
+    function displayToast(message, type) {
+        toast[type](message);
     }
 
     async function fetchSignedUrl() {
@@ -61,7 +66,7 @@ export default function MappingFields(props) {
     async function handleUpload(e) {
         try {
             if (!validateOperation()) {
-                alert('Please fill all fields');
+                toast.error('Please fill all fields');
                 return;
             }
             let signedUrl = await fetchSignedUrl();
@@ -79,7 +84,8 @@ export default function MappingFields(props) {
                 }
             );
             console.log({uploadResponse: response});
-            alert('File uploaded');
+            const toastMessage = response.ok ? {message: 'Your job was submitted!', type: 'dark'} : {message: 'File upload failed!', type: 'error'};
+            displayToast(toastMessage.message, toastMessage.type);
             triggerScreenReset();
         }
         catch(error) {
