@@ -81,6 +81,9 @@ export default function MappingFields(props) {
         setHeaders(modifiedOriginalHeaders);
         
         onSequenceChange({target: {value: modifiedOutputHeaders}});
+
+        // reset mapping on removing header
+        handleMappingChange({target: {value: ''}});
     }
 
     function addHeaderToMappings(data) {
@@ -94,6 +97,8 @@ export default function MappingFields(props) {
 
         setHeaders(modifiedOriginalHeaders);
         setOutputHeaders(modifiedOutputHeaders);
+        // reset mapping on adding header
+        handleMappingChange({target: {value: ''}});
     }
 
     function Headers(props) {
@@ -114,7 +119,7 @@ export default function MappingFields(props) {
             <ul className='ui-list'>
                 <li>File <br/><input type='file' onChange={readFileHeaders} name='file' id='file' accept='.csv' /></li>
                 <li>
-                    <label>Headers (Select file to detect and map headers) </label><br/>
+                    <label>Headers (Select a file to detect and map headers) </label><br/>
                     <ul>
                         <Headers referenceHeaders={referenceHeaders} />
                     </ul>
