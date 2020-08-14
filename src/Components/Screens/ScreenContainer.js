@@ -18,7 +18,8 @@ export default function ScreenContainer(props) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    });
+    },
+    [currentScreen]);
 
     function handleOperationChange(e) {
         console.log({target: e.target.name, value: e.target.value});
