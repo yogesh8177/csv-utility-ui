@@ -79,7 +79,7 @@ export default function PreviewOperation(props) {
             formData.append('file', file, signedUrl.fields.Key);
 
             let response = await fetch(
-                "https://s3.amazonaws.com/csv-uploads-storage",
+                signedUrl.url,
                 {
                     method: 'POST',
                     body: formData
