@@ -79,7 +79,7 @@
 
 .ui-screen-navigation {
   padding: 5px;
-  width: 90%;
+  width: 50%;
 }
 
 .hide {
@@ -123,7 +123,6 @@ input {
 #Mapping, #Sequence {
   padding: 5px;
   width: 90%;
-  height: 40px;
 }
 
 .remove-btn {
@@ -153,8 +152,8 @@ input {
 .preview {
   border: 0px;
   border-radius: 20px;
-  box-shadow: firebrick 2px 3px 2px;
   padding: 5px;
+  width: 90%
 }
 
 .operation {
@@ -166,7 +165,7 @@ input {
 }
 
 .mapping {
-  background-color: indigo;
+  background-color: #737504;
   color: aliceblue;
 }
 
@@ -177,7 +176,7 @@ input {
 .notification-container {
   background-color: #fff;
   padding: 5px;
-  height: 150px;
+  max-height: 150px;
   min-width: 500px;
   overflow-y: scroll;
   border-radius: 10px;
@@ -220,6 +219,9 @@ input {
   background-color: green;
 }
 
-
-
+@media only screen and (max-width: 600px) {
+  .notification-container {
+    width: 200px;
+  }
+}
 

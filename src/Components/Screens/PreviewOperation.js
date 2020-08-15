@@ -98,6 +98,11 @@ export default function PreviewOperation(props) {
         }
     }
 
+    function handleCancelClick(e) {
+        displayToast('Operation cancelled!', 'dark');
+        triggerScreenReset();
+    }
+
     return (
         <>
             <h2>Preview your operation</h2>
@@ -105,9 +110,14 @@ export default function PreviewOperation(props) {
                 <li><label>Operation: <span className='preview operation'>{operation}</span></label></li>
                 <li><label>Format: <span className='preview outputformat'>{outputformat}</span></label></li>
                 <li><label>Mapping</label></li>
-                <li><label><span className='preview mapping'>{mapping}</span></label></li>
-                <li><label>Sequence: <span className='preview sequence'>{sequence}</span></label></li>
-                <li><button className='action-btn upload' name='upload' onClick={handleUpload}>Upload</button></li>
+                <li className='preview mapping'><label><span>{mapping}</span></label></li>
+                <li><label>Sequence</label></li>
+                <li className='preview sequence'><span>{sequence}</span></li>
+                <li>
+                    <button className='action-btn upload' name='upload' onClick={handleUpload}>Upload</button>
+                    &nbsp; &nbsp;
+                    <button className='action-btn cancel' name='cancel' onClick={handleCancelClick}>Cancel</button>
+                </li>
             </ul>
            
         </>
