@@ -169,6 +169,47 @@ input {
   background-color: coral;
 }
 
+.notification-container {
+  background-color: #fff;
+  padding: 5px;
+}
+
+.notification-item {
+  list-style-type: none;
+  padding: 5px;
+  margin-top: 5px;
+  background-color: darkgoldenrod;
+  border-radius: 10px;
+}
+
+.notification-item .dismiss-btn {
+  border: 0;
+  border-radius: 10px;
+  background-color: firebrick;
+  color: aliceblue;
+  padding: 5px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.notification-item .download-btn {
+  border: 0;
+  border-radius: 10px;
+  background-color:darkslategray;
+  color: aliceblue;
+  padding: 5px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.dismiss-btn:hover {
+  background-color: red;
+}
+
+.download-btn:hover {
+  background-color: green;
+}
+
 
 
 
