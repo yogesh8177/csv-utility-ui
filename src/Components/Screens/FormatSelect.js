@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 export default function FormatSelect(props) {
     const {onFormatChange, currentScreenIndex, screenIndex, outputformat} = props;
