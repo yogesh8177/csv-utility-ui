@@ -25,9 +25,9 @@ export default function NotificationContainer(props) {
         return <NotificationItem item={item} key={item.jobid} detectNotificationChange={detectNotificationChange} />
     });
 
-    return (
+    return notificationItems.length ? (
         <ul className="notification-container">
             {notificationItems}
         </ul>
-    );
+    ) : null;
 }

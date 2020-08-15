@@ -4,10 +4,35 @@ import {toast} from 'react-toastify';
 export default function NotificationItem(props) {
     const {item, detectNotificationChange} = props;
 
-    function handleDownloadClick(item) {
-        toast.info(`Downloading: ${item.key}`,{
+    async function handleDownloadClick(item) {
+        const {bucket, key} = item;
+        toast.info(`Downloading file, please wait...`,{
             position: toast.POSITION.TOP_CENTER
         });
+        const payload = {
+            bucketData: {
+                Bucket: bucket,
+                Key: key
+            }
+        };
+        let response = await fetch(
+            'https://05e9fny512.execute-api.us-east-1.amazonaws.com/test/GenerateSignedUrl',{
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+        let signedUrl = await response.json();
+        if (response.ok) {
+            console.log(signedUrl);
+            window.open(signedUrl.url, '_blank');
+        }
+        else {
+            console.error(`Error while receiving signed url from lambda`);
+            toast.error(`Error occurred while downloading file!`);
+        }
     }
 
     function handleDismiss(item) {

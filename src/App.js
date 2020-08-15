@@ -85,15 +85,15 @@ function App() {
       <header className="App-header">
         <h1>Welcome to CSV transformation tool</h1>
         <p>(Launching as beta)</p>
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <ScreenContainer userId={userId} />
+        <ToastContainer newestOnTop={true} />
         <div>
           <NotificationContainer 
             notifications            = {notifications} 
             handleNotificationChange = {handleNotificationChange}
           />
         </div>
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <ScreenContainer userId={userId} />
-        <ToastContainer newestOnTop={true} />
       </header>
     </div>
   );

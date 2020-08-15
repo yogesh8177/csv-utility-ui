@@ -69,6 +69,8 @@ export default function PreviewOperation(props) {
                 toast.error('Please fill all fields');
                 return;
             }
+            displayToast('Thank you, you will be notified when file uploads!', 'info');
+            triggerScreenReset();
             let signedUrl = await fetchSignedUrl();
             const formData = new FormData();
             Object.keys(signedUrl.fields).forEach(key => {
@@ -86,13 +88,13 @@ export default function PreviewOperation(props) {
             console.log({uploadResponse: response});
             const toastMessage = response.ok ? {message: 'Your job was submitted!', type: 'dark'} : {message: 'File upload failed!', type: 'error'};
             displayToast(toastMessage.message, toastMessage.type);
-            triggerScreenReset();
         }
         catch(error) {
             console.error({
                 message: `Error while uploading file`,
                 error
             });
+            displayToast('Network error', 'error');
         }
     }
 
@@ -105,7 +107,7 @@ export default function PreviewOperation(props) {
                 <li><label>Mapping</label></li>
                 <li><label><span className='preview mapping'>{mapping}</span></label></li>
                 <li><label>Sequence: <span className='preview sequence'>{sequence}</span></label></li>
-                <li><button className='action-btn' name='upload' onClick={handleUpload}>Upload</button></li>
+                <li><button className='action-btn upload' name='upload' onClick={handleUpload}>Upload</button></li>
             </ul>
            
         </>
