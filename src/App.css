@@ -13,6 +13,11 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -172,6 +177,10 @@ input {
 .notification-container {
   background-color: #fff;
   padding: 5px;
+  height: 150px;
+  min-width: 500px;
+  overflow-y: scroll;
+  border-radius: 10px;
 }
 
 .notification-item {
@@ -180,6 +189,7 @@ input {
   margin-top: 5px;
   background-color: darkgoldenrod;
   border-radius: 10px;
+  box-sizing: content-box;
 }
 
 .notification-item .dismiss-btn {
