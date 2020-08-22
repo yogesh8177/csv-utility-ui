@@ -8,7 +8,6 @@ export default function FormatSelect(props) {
     }
 
     function handleFormatChange(e) {
-        console.log('setting format', e.target.value);
         onFormatChange(e);
     }
 

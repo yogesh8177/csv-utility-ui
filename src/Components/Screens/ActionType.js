@@ -9,7 +9,6 @@ export default function ActionType(props) {
     }
 
     function handleActionChange(e) {
-        console.log('setting operation', e.target.value);
         onActionChange(e);
     }
 

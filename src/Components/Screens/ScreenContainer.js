@@ -22,12 +22,10 @@ export default function ScreenContainer(props) {
     [currentScreen]);
 
     function handleOperationChange(e) {
-        console.log({target: e.target.name, value: e.target.value});
         setOperation(e.target.value);
     }
 
     function handleOutputFormatChange(e) {
-        console.log({target: e.target.name, value: e.target.value});
         setFormat(e.target.value);
     }
 

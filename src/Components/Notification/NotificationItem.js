@@ -27,7 +27,6 @@ export default function NotificationItem(props) {
             });
             let signedUrl = await response.json();
             if (response.ok) {
-                console.log(signedUrl);
                 window.open(signedUrl.url, '_blank');
             }
             else {
