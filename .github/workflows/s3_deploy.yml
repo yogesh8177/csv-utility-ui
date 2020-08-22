@@ -22,3 +22,17 @@ jobs:
           CI: ""
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./build/ s3://csv-utility.ytechspark.com --delete
+      - name: Slack Notification for success
+        if: success()
+        uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_USERNAME: app-alert
+          SLACK_TITLE: Build succeeded
+      - name: Slack Notification for failure
+        if: success()
+        uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_USERNAME: app-alert
+          SLACK_TITLE: Build failed
