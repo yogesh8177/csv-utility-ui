@@ -1,4 +1,4 @@
-name: s3-deploy
+name: s3-build-deploy
 
 on:
   push:
@@ -22,3 +22,22 @@ jobs:
           CI: ""
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./build/ s3://csv-utility.ytechspark.com --delete
+      - name: Notify slack success
+        if: success()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          channel: app-alerts
+          status: SUCCESS
+          color: good
+
+      - name: Notify slack fail
+        if: failure()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          channel: app-alerts
+          status: FAILED
+          color: danger
