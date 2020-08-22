@@ -28,9 +28,9 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_USERNAME: app-alert
-          SLACK_TITLE: Build succeeded
+          SLACK_TITLE: Build success
       - name: Slack Notification for failure
-        if: success()
+        if: failure()
         uses: rtCamp/action-slack-notify@master
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
