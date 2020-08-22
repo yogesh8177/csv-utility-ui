@@ -35,7 +35,6 @@ export default function PreviewOperation(props) {
                 body: JSON.stringify(payload)
             });
             let signedResponse = await response.json();
-            console.log({signedResponse});
             return signedResponse;
         }
         catch(error) {
@@ -85,7 +84,6 @@ export default function PreviewOperation(props) {
                     body: formData
                 }
             );
-            console.log({uploadResponse: response});
             const toastMessage = response.ok ? {message: 'Your job was submitted!', type: 'dark'} : {message: 'File upload failed!', type: 'error'};
             displayToast(toastMessage.message, toastMessage.type);
         }

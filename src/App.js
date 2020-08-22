@@ -16,7 +16,6 @@ function App() {
 
   useEffect(() => {
     initializeNotifications();
-    console.log('calling notification useEffect');
   }, [JSON.stringify(notifications)]); // Have to stringify as it will enter infinite loop as arrays are not detected!!
 
   useEffect(() => {
@@ -45,10 +44,9 @@ function App() {
     socket.onopen = event => {
       setWebSocket(socket);
       setConnected(true);
-      console.log('connected to websocket', event);
+      console.log('connected to websocket');
     }
     socket.onmessage = event => {
-      console.log(event);
       const data = JSON.parse(event.data);
       const _notifications = data.jobs;
       const toastMessage = data.status === 'complete' ? {message: 'Your job was successfully completed!', type: 'info'} : {message: 'Your job failed!', type: 'error'};
@@ -61,7 +59,6 @@ function App() {
       
       setNotifications(savedNotifications);
       localStorage.setItem('notifications', JSON.stringify(savedNotifications));
-      console.log(JSON.parse(event.data));
     }
     socket.onerror = e => {
       console.error({message: 'Error while connecitng to websocket', e});
@@ -76,7 +73,6 @@ function App() {
   }
 
   function handleNotificationChange(items) {
-    console.log('notifications changed', items);
     setNotifications(items);
   }
 

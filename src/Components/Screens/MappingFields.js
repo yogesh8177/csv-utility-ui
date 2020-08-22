@@ -25,9 +25,7 @@ export default function MappingFields(props) {
         let files = e.target.files;
         const reader = new FileReader();
         reader.onload = (e) => {
-            console.log('file onload: ', e.target.result.split(/\r?\n/)[0]);
             let csvHeaders = e.target.result.split(/\r?\n/)[0];
-            console.log({csvHeadersLength: csvHeaders.length});
             setHeaders(csvHeaders.split(','));
             setReferenceHeaders(csvHeaders.split(','));
             setOutputHeaders(csvHeaders.split(','));
@@ -63,7 +61,6 @@ export default function MappingFields(props) {
         });
         // set header mappings
         onMappingChange({target: {value: _mappings}});
-        console.log({_sequence});
         // set header sequence
         onSequenceChange({target: {value: _sequence}});
         //set output headers
