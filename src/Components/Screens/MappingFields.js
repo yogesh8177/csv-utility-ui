@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 export default function MappingFields(props) {
     const {
@@ -21,16 +22,30 @@ export default function MappingFields(props) {
         return null;
     }
 
-    function readFileHeaders(e) {
+    function displayToast(message, type) {
+        toast[type](message);
+    }
+
+    function handleFileLoad(e) {
+        if (e.target.result.length > 40000000) {
+            displayToast(`File is too big, please select a file with small size!`, 'error');
+            return;
+        }
+        let csvHeaders = e.target.result.split(/\r?\n/)[0];
+        if (csvHeaders.length > 1000) {
+            displayToast(`File is too big, please select a file with small size!`, 'error');
+            return;
+        }
+        setHeaders(csvHeaders.split(','));
+        setReferenceHeaders(csvHeaders.split(','));
+        setOutputHeaders(csvHeaders.split(','));
+        onSequenceChange({target: {value: csvHeaders}});
+    }
+
+    function readFile(e) {
         let files = e.target.files;
         const reader = new FileReader();
-        reader.onload = (e) => {
-            let csvHeaders = e.target.result.split(/\r?\n/)[0];
-            setHeaders(csvHeaders.split(','));
-            setReferenceHeaders(csvHeaders.split(','));
-            setOutputHeaders(csvHeaders.split(','));
-            onSequenceChange({target: {value: csvHeaders}});
-        };
+        reader.onload = handleFileLoad;
         reader.readAsText(files[0]);
         onFileChange(e);
     }
@@ -113,7 +128,7 @@ export default function MappingFields(props) {
     return (
         <>
             <ul className='ui-list'>
-                <li>File <br/><input type='file' onChange={readFileHeaders} name='file' id='file' accept='.csv' /></li>
+                <li>File <br/><input type='file' onChange={readFile} name='file' id='file' accept='.csv' /></li>
                 <li>
                     <label>Headers (Select a file to detect and map headers) </label><br/>
                     <ul>
