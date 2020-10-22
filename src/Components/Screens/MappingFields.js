@@ -28,12 +28,12 @@ export default function MappingFields(props) {
 
     function handleFileLoad(e) {
         if (e.target.result.length > 40000000) {
-            displayToast(`File is too big, please select a file with small size!`, 'error');
+            displayToast(`File is too large, please select a file with small size!`, 'error');
             return;
         }
         let csvHeaders = e.target.result.split(/\r?\n/)[0];
-        if (csvHeaders.length > 1000) {
-            displayToast(`File is too big, please select a file with small size!`, 'error');
+        if (csvHeaders.length > 100000) {
+            displayToast(`Header size is too large, please select a file with small size!`, 'error');
             return;
         }
         setHeaders(csvHeaders.split(','));
